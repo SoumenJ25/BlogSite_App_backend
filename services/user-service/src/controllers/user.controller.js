@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator")
-const { registerUser } = require("../services/user.service")
+const { registerUser, loginUser } = require("../services/user.service")
 
 const register = async (req, res) => {
     try {
@@ -24,4 +24,23 @@ const register = async (req, res) => {
     }
 }
 
-module.exports = { register }
+const login = async (req, res) => {
+    try {
+
+        const { email, password } = req.body
+
+        const user = await loginUser({ email, password })
+
+        res.status(201).json({
+            message: "User logged in successfully",
+            user
+        })
+
+    } catch (error) {
+        res.status(error.statusCode || 500).json({
+            message: error.message || "Internal Server Error"
+        })
+    }
+}
+
+module.exports = { register, login }

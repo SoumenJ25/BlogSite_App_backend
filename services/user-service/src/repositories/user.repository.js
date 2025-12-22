@@ -10,11 +10,11 @@ const createUser = async (username, email, password) => {
 
 }
 
-const findOneEmail = (email) => {
+const doesEmailExist = (email) => {
     return UserModel.findOne({ email })
 }
 
 module.exports = {
     createUser,
-    findOneEmail
+    doesEmailExist
 }
