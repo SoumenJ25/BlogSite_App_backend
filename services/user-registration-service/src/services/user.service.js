@@ -1,8 +1,8 @@
 const bcrypt = require("bcrypt")
-const User = require("../models/user.model")
+const userRepository = require("../repositories/user.repository")
 
 const registerUser = async ({ username, email, password }) => {
-    const existingUser = await User.findOne({ email })
+    const existingUser = await userRepository.findOneEmail(email)
 
     if (existingUser) {
         const error = new Error("User already exists")
@@ -12,14 +12,9 @@ const registerUser = async ({ username, email, password }) => {
 
     const hashedPassword = await bcrypt.hash(password, 10)
 
-    const user = await User.create({
-        username,
-        email,
-        password: hashedPassword
-    })
-
+    const user = await userRepository.createUser(username, email, hashedPassword)
     return {
-        id: user._id,
+        id: user.userId,
         email: user.email,
         username: user.username
     }
