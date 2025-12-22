@@ -4,8 +4,8 @@ const { registerValidator, loginValidator } = require("../validators/user.valida
 
 const router = express.Router()
 
-router.post("/register", registerValidator, register);
+router.post("/register", registerValidator, register)
 
-router.post("/login", loginValidator, login);
+router.post("/login", loginValidator, login)
 
-module.exports = router;
+module.exports = router

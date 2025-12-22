@@ -15,7 +15,7 @@ const registerUser = async ({ username, email, password }) => {
 
     const user = await userRepository.createUser(username, email, hashedPassword)
     return {
-        id: user.userId,
+        id: user._id,
         email: user.email,
         username: user.username
     }
@@ -40,6 +40,7 @@ const loginUser = async ({ email, password }) => {
 
     return jwt.sign({
         userId: user._id,
+        username: user.username,
         email: user.email
     },
         process.env.JWT_SECRET,
