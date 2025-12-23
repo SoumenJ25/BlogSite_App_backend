@@ -1,5 +1,5 @@
 const express = require('express')
- const blogRoutes = require("./routes/blog.route")
+ const blogRoutes = require("./routes/blog.routes")
 
 
 const app = express()
