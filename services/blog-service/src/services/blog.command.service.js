@@ -15,4 +15,22 @@ const addBlog = async (user, data) => {
     }
 }
 
-module.exports = { addBlog }
+const deleteBlog = async (userId, blogId) => {
+    const blog = await blogRepository.findBlogById(blogId)
+
+    if (!blog) {
+        const error = new Error("Blog not found")
+        error.statusCode = 404
+        throw error
+    }
+
+    if(blog.authorId.toString() !== userId) {
+        const error = new Error("You are not allowed to delete this blog")
+        error.statusCode = 403
+        throw error
+    }
+
+    await blogRepository.deleteBlogById(blogId)
+}
+
+module.exports = { addBlog, deleteBlog }
