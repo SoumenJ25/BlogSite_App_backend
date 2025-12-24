@@ -16,8 +16,9 @@ const getBlogsByAuthor = async (authorId) => {
     }
 }
 
-const getAllUserBlogs = async () => {
-    const blogs = await blogRepository.findAllBlogs()
+const getAllUserBlogs = async (filters) => {
+
+    const blogs = await blogRepository.findAllBlogs(filters)
 
     if (!blogs || blogs.length === 0) {
         return {

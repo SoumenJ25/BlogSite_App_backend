@@ -16,8 +16,27 @@ const findBlogById = async (blogId) => {
     return Blog.findById(blogId)
 }
 
-const findAllBlogs = async () => {
-    return Blog.find().sort({ createdAt: -1 })
+const findAllBlogs = async ({ category, startDate, endDate }) => {
+    const query = {}
+
+    if(category) {
+        query.category = {
+            $regex: category,
+            $options: 'i'
+        }
+    }
+
+    if(startDate || endDate) {
+        query.createdAt = {}
+        if(startDate){
+            query.createdAt.$gte = new Date(startDate)
+        }
+        if(endDate){
+            query.createdAt.$lte = new Date(endDate)
+        }
+    }
+
+    return Blog.find(query).sort({ createdAt: -1 })
 }
 
 module.exports = {

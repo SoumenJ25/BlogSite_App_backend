@@ -53,7 +53,8 @@ const deleteUserBlogById = async (req, res) => {
 }
 
 const getAllBlogs = async (req, res) => {
-    const response = await blogQueryService.getAllUserBlogs()
+    const { category, startDate, endDate } = req.query
+    const response = await blogQueryService.getAllUserBlogs({ category, startDate, endDate })
     res.status(200).json(response)
 }
 
