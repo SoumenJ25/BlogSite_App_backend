@@ -4,4 +4,8 @@ const createBlog = async (blogData) => {
     return Blog.create(blogData)
 }
 
-module.exports = { createBlog }
+const findBlogByAuthorId = async (authorId) => {
+    return Blog.find({ authorId }).sort({ createdAt: -1 })
+}
+
+module.exports = { createBlog, findBlogByAuthorId }
