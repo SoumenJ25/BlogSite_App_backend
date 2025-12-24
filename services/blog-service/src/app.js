@@ -13,6 +13,6 @@ app.get("/health", (req,res)=>{
     })
 })
 
-app.use("/api/v1/blogSite/user", blogRoutes)
+app.use("/api/v1/blogSite", blogRoutes)
 
 module.exports = app

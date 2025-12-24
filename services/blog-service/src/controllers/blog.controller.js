@@ -52,8 +52,14 @@ const deleteUserBlogById = async (req, res) => {
     }
 }
 
+const getAllBlogs = async (req, res) => {
+    const response = await blogQueryService.getAllUserBlogs()
+    res.status(200).json(response)
+}
+
 module.exports = {
     createBlogController,
     getUserBlogs,
-    deleteUserBlogById
+    deleteUserBlogById,
+    getAllBlogs
 }

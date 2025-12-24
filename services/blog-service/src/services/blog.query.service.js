@@ -16,4 +16,20 @@ const getBlogsByAuthor = async (authorId) => {
     }
 }
 
-module.exports = { getBlogsByAuthor }
+const getAllUserBlogs = async () => {
+    const blogs = await blogRepository.findAllBlogs()
+
+    if (!blogs || blogs.length === 0) {
+        return {
+            message: "No blogs available",
+            data: []
+        }
+    }
+
+    return {
+        count: blogs.length,
+        data: blogs
+    }
+}
+
+module.exports = { getBlogsByAuthor, getAllUserBlogs }
