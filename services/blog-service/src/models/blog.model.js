@@ -9,7 +9,8 @@ const BlogSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true,
-        minlength: 20
+        minlength: 20,
+        index: true
     },
     article: {
         type: String,
