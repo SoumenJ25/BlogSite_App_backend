@@ -8,4 +8,17 @@ const findBlogByAuthorId = async (authorId) => {
     return Blog.find({ authorId }).sort({ createdAt: -1 })
 }
 
-module.exports = { createBlog, findBlogByAuthorId }
+const deleteBlogById = async (blogId) => {
+    return Blog.findByIdAndDelete(blogId)
+}
+
+const findBlogById = async (blogId) => {
+    return Blog.findById(blogId)
+}
+
+module.exports = {
+    createBlog,
+    findBlogByAuthorId,
+    deleteBlogById,
+    findBlogById
+}

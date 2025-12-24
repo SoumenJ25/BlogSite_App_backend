@@ -17,4 +17,10 @@ const createBlogValidator = [
         .withMessage('Article must be at least 1000 characters')
 ]
 
-module.exports = { createBlogValidator }
+const deleteBlogValidator = [
+    body('blogId')
+        .notEmpty().withMessage('blogId is required')
+        .isMongoId().withMessage('Invalid blogId format')
+]
+
+module.exports = { createBlogValidator, deleteBlogValidator }
