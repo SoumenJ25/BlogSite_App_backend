@@ -1,9 +1,16 @@
 const express = require("express");
 const gatewayRoutes = require("./routes/gateway.routes");
+const cors = require("cors")
 
 const app = express();
 
 app.use(express.json());
+
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}))
 
 // Health check
 app.get("/health", (req, res) => {
