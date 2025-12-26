@@ -97,15 +97,27 @@ Expired tokens return 401 Unauthorized
 🔹 User Service
 Method	Endpoint	Description
 POST	/api/v1/blogSite/user/register	-- Register a new user
+
+
 POST	/api/v1/blogSite/user/login	--Login & receive JWT
+
+
 🔹 Blog Service (Authenticated)
 Method	Endpoint	Description
 POST	/api/v1/blogSite/user/blogs/add	-- Create a new blog
+
+
 DELETE	/api/v1/blogSite/user/blogs/delete	-- Delete a blog (own blog only)
+
+
 GET	/api/v1/blogSite/user/blogs/getall	-- Get blogs created by logged-in user
+
+
 🔹 Blog Service (Public)
 Method	Endpoint	Description
 GET	/api/v1/blogSite/blogs/getall	-- Get all public blogs
+
+
 GET	/api/v1/blogSite/blogs?category=&startDate=&endDate=	-- Filter public blogs
 🧪 Validation Rules
 User Registration
