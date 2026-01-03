@@ -56,6 +56,69 @@ router.use(
     })
 )
 
+/**
+ * @swagger
+ * /api/v1/blogSite/user/register:
+ *   post:
+ *     summary: Register a new user
+ *     description: Registers a new user into the system.
+ *     tags:
+ *       - User
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - username
+ *               - email
+ *               - password
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: johnDoe
+ *               email:
+ *                 type: string
+ *                 example: johndoe@gmail.com
+ *               password:
+ *                 type: string
+ *                 example: Password123
+ *     responses:
+ *       201:
+ *         description: User registered successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: User registered successfully
+ *       409:
+ *         description: Database Validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Email already exists
+ *       400:
+ *         description: Field Validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Invalid Email Address
+ *       500:
+ *         description: Internal server error
+ */
+
 router.use(
     "/v1/blogSite/user",
     createProxyMiddleware({

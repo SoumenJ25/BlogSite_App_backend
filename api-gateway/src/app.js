@@ -1,6 +1,8 @@
 const express = require("express");
 const gatewayRoutes = require("./routes/gateway.routes");
 const cors = require("cors")
+const swaggerUi = require("swagger-ui-express")
+const swaggerSpec = require("./swagger/swagger")
 
 const app = express();
 
@@ -11,6 +13,9 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }))
+
+// Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 // Health check
 app.get("/health", (req, res) => {
@@ -29,5 +34,6 @@ app.use((req, res) => {
         path: req.originalUrl
     });
 });
+
 
 module.exports = app;
