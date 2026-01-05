@@ -1,0 +1,49 @@
+paths:
+  /api/v1/blogSite/user/blogs/getall:
+    get:
+      tags:
+      - Blogs
+      summary: Get blogs of logged-in user
+      description: >
+        Fetches all blogs created by the authenticated user. User identity is derived from the JWT token.
+      security:
+      - BearerAuth: []
+
+      responses:
+        200:
+          description: User blogs fetched successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                          example: 65b9a8c2f1d2c30012abcd34
+                        blogName:
+                          type: string
+                          example: My First Blog
+                        category:
+                          type: string
+                          example: Personal Growth
+                        article:
+                          type: string
+                          example: This blog talks about my journey...
+                        authorName:
+                          type: string
+                          example: Soumen Jana
+                        createdAt:
+                          type: string
+                          format: date-time
+                          example: 2024-07-01T09:15:00.000Z
+
+        401:
+          description: Authentication required/ Invalid or expired token
