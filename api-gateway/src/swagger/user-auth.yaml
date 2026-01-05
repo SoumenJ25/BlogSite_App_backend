@@ -3,6 +3,7 @@ paths:
     post:
       summary: Register a new user
       description: Registers a new user into the system.
+      security: []
       tags:
       - User
       requestBody:
@@ -63,6 +64,7 @@ paths:
     post:
       summary: Login user
       description: Authenticate user and return JWT token
+      security: []
       tags:
       - Auth
       requestBody:
