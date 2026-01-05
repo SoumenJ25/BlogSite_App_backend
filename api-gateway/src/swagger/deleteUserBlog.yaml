@@ -1,0 +1,52 @@
+paths:
+  /api/v1/blogSite/user/blogs/delete:
+    delete:
+      tags:
+      - Blogs
+      summary: Delete a blog
+      description: >
+        Deletes a blog owned by the authenticated user. Ownership is verified using the JWT token.
+      security:
+      - BearerAuth:
+
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - blogId
+              properties:
+                blogId:
+                  type: string
+                  description: Unique identifier of the blog to delete
+                  example: 65c2f7b9a1e4b30012abcd56
+
+      responses:
+        200:
+          description: Blog deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Blog is deleted successfully
+
+        400:
+          description: Validation failed
+
+        401:
+          description: Authentication required/ Invalid or expired token
+
+        403:
+          description: Forbidden - You are not allowed to delete this blog
+
+        404:
+          description: Blog not found
+
+        500:
+          description: Internal server error

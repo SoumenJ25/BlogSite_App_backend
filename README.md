@@ -170,3 +170,5 @@ MongoDB is running
 API Gateway is running on port 4000
 
 User and Blog services are running on their respective ports
+
+Swagger is running on /api-docs path under gateway, e.g., http://localhost:4000/api-docs

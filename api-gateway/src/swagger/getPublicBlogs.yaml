@@ -1,0 +1,72 @@
+paths:
+  /api/v1/blogSite/blogs/getall:
+    get:
+      tags:
+      - Blogs
+      summary: Get all public blogs
+      description: >
+        Fetches all public blogs. Supports optional filtering by category and date range.
+      security: []
+
+      parameters:
+      - in: query
+        name: category
+        schema:
+          type: string
+        required: false
+        description: Filter blogs by category (partial match supported)
+        example: technology
+
+      - in: query
+        name: startDate
+        schema:
+          type: string
+          format: date
+        required: false
+        description: Start date for blog creation (inclusive)
+        example: 2024-01-01
+
+      - in: query
+        name: endDate
+        schema:
+          type: string
+          format: date
+        required: false
+        description: End date for blog creation (inclusive)
+        example: 2024-12-31
+
+      responses:
+        200:
+          description: Blogs fetched successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 2
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                          example: 65b9a8c2f1d2c30012abcd34
+                        blogName:
+                          type: string
+                          example: Understanding React Context API
+                        category:
+                          type: string
+                          example: Frontend Development
+                        article:
+                          type: string
+                          example: This article explains how Context API works...
+                        authorName:
+                          type: string
+                          example: Soumen Jana
+                        createdAt:
+                          type: string
+                          format: date-time
+                          example: 2024-06-15T10:30:00.000Z
