@@ -1,0 +1,71 @@
+paths:
+  /api/v1/blogSite/user/blogs/add:
+    post:
+      tags:
+      - Blogs
+      summary: Create a new blog
+      description: >
+        Creates a new blog for the authenticated user. Author details and timestamp are derived from the JWT token.
+      security:
+      - BearerAuth: []
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - blogName
+              - category
+              - article
+              properties:
+                blogName:
+                  type: string
+                  minLength: 20
+                  example: How I Built a Microservice Architecture
+                category:
+                  type: string
+                  minLength: 20
+                  example: System Design
+                article:
+                  type: string
+                  minLength: 1000
+                  example: >
+                    In this article, I explain how I designed an API Gateway with multiple services...
+      responses:
+        201:
+          description: Blog created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  blogs:
+                    type: object
+                    properties:
+                      blogName:
+                        type: string
+                        example: First Blog created
+                      category:
+                        type: string
+                        example: First blog category
+                      article:
+                        type: string
+                        example: my first blog of 1000 chars...
+                      authorId:
+                        type: string
+                        example: 69592557587cd9538a2a..
+                      authorName:
+                        type: string
+                        example: Soumen Jana
+                      createdAt:
+                        type: string
+                        format: date-time
+                        example: 2024-06-15T10:30:00.000Z
+
+        400:
+          description: Validation error
+
+        401:
+          description: Authentication required/ Invalid or expired token
